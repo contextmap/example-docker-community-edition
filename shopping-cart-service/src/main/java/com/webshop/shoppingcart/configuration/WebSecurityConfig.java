@@ -2,6 +2,7 @@ package com.webshop.shoppingcart.configuration;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,7 +37,7 @@ public class WebSecurityConfig {
         http.cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests()
-                .requestMatchers("/public-api/**").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
@@ -45,11 +46,17 @@ public class WebSecurityConfig {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth,
+                                PasswordEncoder passwordEncoder,
+                                @Value("${credentials.application.admin.username}") String adminUsername,
+                                @Value("${credentials.application.admin.password}") String adminPassword,
+                                @Value("${credentials.application.guest.username}") String guestUsername,
+                                @Value("${credentials.application.guest.password}") String guestPassword
+    ) throws Exception {
         var inMemoryAuth = auth.inMemoryAuthentication();
 
-        inMemoryAuth.withUser("admin").password(passwordEncoder.encode("admin")).authorities(SHOPPING_CART_READ, SHOPPING_CART_WRITE);
-        inMemoryAuth.withUser("guest").password(passwordEncoder.encode("guest")).authorities(SHOPPING_CART_READ);
+        inMemoryAuth.withUser(adminUsername).password(passwordEncoder.encode(adminPassword)).authorities(SHOPPING_CART_READ, SHOPPING_CART_WRITE);
+        inMemoryAuth.withUser(guestUsername).password(passwordEncoder.encode(guestPassword)).authorities(SHOPPING_CART_READ);
     }
 
     /**

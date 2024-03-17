@@ -1,5 +1,12 @@
 credentials:
-  rest:
+  application:
+    admin:
+      username: admin
+      password: admin
+    guest:
+      username: guest
+      password: guest
+  rest-client:
     username: shopping-cart-user
     password: very-secret
   database:

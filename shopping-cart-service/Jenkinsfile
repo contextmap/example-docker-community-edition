@@ -17,5 +17,12 @@ pipeline {
                 sh './mvnw verify'
             }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // dummy step in which deployment of new version would occur
+                echo 'Deployed to test environment'
+            }
+        }
     }
 }
