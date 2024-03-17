@@ -1,4 +1,4 @@
-package com.webshop.shoppingcart.model.common;
+package com.webshop.shoppingcart.service.exceptions;
 
 public class EntityNotFound extends RuntimeException {
 

@@ -3,9 +3,6 @@ package com.webshop.shoppingcart.controller;
 import com.webshop.shoppingcart.controller.model.CreationRequest;
 import com.webshop.shoppingcart.controller.model.ItemRequest;
 import com.webshop.shoppingcart.controller.model.ShoppingCartResponse;
-import com.webshop.shoppingcart.model.id.InventoryItemId;
-import com.webshop.shoppingcart.model.id.ShoppingCartId;
-import com.webshop.shoppingcart.model.id.UserId;
 import com.webshop.shoppingcart.service.ShoppingCartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,14 +36,14 @@ public class ShoppingCartController {
     @Secured(SHOPPING_CART_READ)
     @GetMapping("/{id}")
     public ShoppingCartResponse getShoppingCart(@PathVariable String id) {
-        var shoppingCart = service.getShoppingCart(ShoppingCartId.fromString(id));
+        var shoppingCart = service.getShoppingCart(id);
         return ShoppingCartResponse.toResponse(shoppingCart);
     }
 
     @Secured(SHOPPING_CART_WRITE)
     @PutMapping("/{id}/item")
     public void putInShoppingCart(@PathVariable String id, @RequestBody ItemRequest request) {
-        service.addItem(ShoppingCartId.fromString(id), InventoryItemId.fromString(request.inventoryItemId()), request.amount());
+        service.addItem(id, request.inventoryItemId(), request.amount());
     }
 
     @Secured(SHOPPING_CART_WRITE)
@@ -65,14 +62,14 @@ public class ShoppingCartController {
     @PostMapping("/{id}/checkout")
     public void checkout(@PathVariable String id) {
         log.info("Checkout shopping cart {}", id);
-        service.checkout(ShoppingCartId.fromString(id));
+        service.checkout(id);
     }
 
     @Secured(SHOPPING_CART_WRITE)
     @PostMapping
-    public ShoppingCartId createShoppingCart(@RequestBody CreationRequest request) {
+    public String createShoppingCart(@RequestBody CreationRequest request) {
         log.info("Creating shopping cart for user {}", request.userId());
-        return service.createShoppingCart(UserId.fromString(request.userId()));
+        return service.createShoppingCart(request.userId());
     }
 
 }

@@ -1,7 +1,7 @@
 package com.webshop.shoppingcart.configuration;
 
-import com.webshop.shoppingcart.model.common.EntityNotFound;
-import com.webshop.shoppingcart.model.common.EntityNotUnique;
+import com.webshop.shoppingcart.service.exceptions.EntityNotFound;
+import com.webshop.shoppingcart.service.exceptions.EntityNotUnique;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

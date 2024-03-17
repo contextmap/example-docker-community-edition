@@ -1,8 +1,6 @@
-package com.webshop.shoppingcart.model;
+package com.webshop.shoppingcart.domain.model;
 
-import com.webshop.shoppingcart.model.id.ShoppingCartId;
-import com.webshop.shoppingcart.model.id.UserId;
-import com.webshop.shoppingcart.repository.ShoppingCartRepository;
+import com.webshop.shoppingcart.domain.repository.ShoppingCartRepository;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,14 +14,13 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 public class ShoppingCart {
 
-    @EmbeddedId
-    private ShoppingCartId id;
+    @Id
+    private String id;
 
-    @Embedded
-    private UserId userId;
+    private String userId;
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "shopping_cart_id", referencedColumnName = "shopping_cart_id")
+    @JoinColumn(name = "shopping_cart_id", nullable = false)
     private List<ShoppingCartItem> items;
 
     private LocalDateTime createdOn;
@@ -33,7 +30,7 @@ public class ShoppingCart {
         // for hibernate
     }
 
-    public static ShoppingCart create(UserId userId) {
+    public static ShoppingCart create(String userId) {
         var shoppingCart = new ShoppingCart();
         shoppingCart.id = ShoppingCartRepository.nextIdentity();
         shoppingCart.userId = userId;
