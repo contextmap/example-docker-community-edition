@@ -1,0 +1,49 @@
+credentials:
+  rest:
+    username: shopping-cart-user
+    password: very-secret
+  database:
+    username: root
+    password: root
+  messaging:
+    username: guest
+    password: guest
+
+spring:
+  application:
+    name: shopping-cart-service
+  main:
+    banner-mode: off
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shopping-cart
+    username: ${credentials.database.username}
+    password: ${credentials.database.password}
+  flyway:
+    schemas: shopping-cart
+  jpa:
+    properties:
+      hibernate.default_schema: shopping-cart
+
+server:
+  port: 8084
+
+# Ignore discovery issues since we are running without a Eureka discovery-server
+logging:
+  level:
+    com.netflix: ERROR
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 300
+
+contextmap:
+  enabled: true
+  key: @contextmap.key@
+  host: @contextmap.host@
+  scan:
+    system-name: Webshop
+    overview-decision-record: overview.md
+
+
