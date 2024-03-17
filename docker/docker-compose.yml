@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  rabbitmq-container:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./rabbitmq/rabbitmq.security:/etc/rabbitmq/rabbitmq.security:ro
+
+  postgres-container:
+    image: postgres:13.1-alpine
+    container_name: postgres-container
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=shopping-cart
+
