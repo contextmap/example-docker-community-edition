@@ -2,16 +2,18 @@
 
 ## Introduction
 
-This example project demonstrates how to get started with the community edition docker image.
+This example project demonstrates how to get started with the ContextMap Community Edition docker image.
 
-## How to use this project
+## How To's
 
-First start the necessary docker images by executing 
+### How to generate documentation for the first time
+
+First check out this project, then from the root folder start the necessary docker images by executing: 
 ```shell
 docker compose up
 ```
 
-Next, you can manually run the command to trigger compile-time scanning of the shopping-cart-service, via
+Next, you can manually run the command to trigger compile-time scanning of the shopping-cart-service, via:
 ```shell
 cd shopping-cart-service
 mvn clean compile contextmap:scan
@@ -25,11 +27,19 @@ either via your IDE, or via command-line e.g.
 mvn spring-boot:run
 ```
 
-## Useful 
+### How to navigate through the documentation for the first time
+
+TODO
+
+## Useful Links
+
+When the docker containers have started and the shopping-cart-service is running then the following will be available.
 
 - **ContextMap** will run on http://localhost:8080
-- **Swagger** is available when the shopping-cart-service is running via http://localhost:8084/swagger-ui/index.html. Use admin/admin when asked for username/password.
-- **RabbitMQ** admin dashboard will run on http://localhost:15672. Use guest/guest when asked for username/password.
+- **Swagger** will run on http://localhost:8084/swagger-ui/index.html (use admin/admin when asked for username/password)
+- **RabbitMQ** admin dashboard will run on http://localhost:15672 (use guest/guest when asked for username/password)
+- **Jenkins** will run on http://localhost:8081 (but only if you have enabled this)
 
+## About the docker images
 
-TODO explain docker compose
+TODO explain docker compose especially jenkins
