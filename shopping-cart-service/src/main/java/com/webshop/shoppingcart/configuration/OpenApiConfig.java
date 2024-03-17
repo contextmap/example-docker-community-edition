@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition(
         info = @Info(
                 title = "shopping-cart-service",
-                version = "v1",
+                version = "1.0.0",
                 contact = @Contact(
                         name = "Team Awesome",
                         email = "awesome@webshop.com"
