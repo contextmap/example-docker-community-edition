@@ -1,9 +1,11 @@
 package com.webshop.shoppingcart.controller;
 
 import com.webshop.shoppingcart.controller.model.CreationRequest;
+import com.webshop.shoppingcart.controller.model.ItemRequest;
 import com.webshop.shoppingcart.controller.model.ShoppingCartResponse;
-import com.webshop.shoppingcart.model.ShoppingCartId;
-import com.webshop.shoppingcart.model.UserId;
+import com.webshop.shoppingcart.model.id.InventoryItemId;
+import com.webshop.shoppingcart.model.id.ShoppingCartId;
+import com.webshop.shoppingcart.model.id.UserId;
 import com.webshop.shoppingcart.service.ShoppingCartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,8 +45,8 @@ public class ShoppingCartController {
 
     @Secured(SHOPPING_CART_WRITE)
     @PutMapping("/{id}/item")
-    public ResponseEntity<ShoppingCartResponse> putInShoppingCart(@PathVariable String id) {
-        return ResponseEntity.ok(null);
+    public void putInShoppingCart(@PathVariable String id, @RequestBody ItemRequest request) {
+        service.addItem(ShoppingCartId.fromString(id), InventoryItemId.fromString(request.inventoryItemId()), request.amount());
     }
 
     @Secured(SHOPPING_CART_WRITE)

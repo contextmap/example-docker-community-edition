@@ -1,14 +1,14 @@
-package com.webshop.shoppingcart.model;
+package com.webshop.shoppingcart.model.id;
 
 
 import com.webshop.shoppingcart.model.common.EntityId;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Getter
@@ -16,13 +16,13 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class ShoppingCartItemId extends EntityId implements Serializable {
+public class ShoppingCartId extends EntityId implements Serializable {
 
-    @Column(name = "shopping_cart_item_id")
+    @Column(name = "shopping_cart_id")
     private String value;
 
-    public static ShoppingCartItemId fromString(String value) {
-        return new ShoppingCartItemId(value);
+    public static ShoppingCartId fromString(String value) {
+        return new ShoppingCartId(value);
     }
 
 }

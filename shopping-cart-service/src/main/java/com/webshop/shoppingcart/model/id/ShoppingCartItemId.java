@@ -1,4 +1,5 @@
-package com.webshop.shoppingcart.model;
+package com.webshop.shoppingcart.model.id;
+
 
 import com.webshop.shoppingcart.model.common.EntityId;
 import jakarta.persistence.Column;
@@ -10,19 +11,18 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-
 @Getter
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class UserId extends EntityId implements Serializable {
+public class ShoppingCartItemId extends EntityId implements Serializable {
 
-    @Column(name = "user_id")
+    @Column(name = "shopping_cart_item_id")
     private String value;
 
-    public static UserId fromString(String value) {
-        return new UserId(value);
+    public static ShoppingCartItemId fromString(String value) {
+        return new ShoppingCartItemId(value);
     }
 
 }
