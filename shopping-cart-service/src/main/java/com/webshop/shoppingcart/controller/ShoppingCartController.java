@@ -5,7 +5,6 @@ import com.webshop.shoppingcart.controller.model.ShoppingCartResponse;
 import com.webshop.shoppingcart.model.ShoppingCartId;
 import com.webshop.shoppingcart.model.UserId;
 import com.webshop.shoppingcart.service.ShoppingCartService;
-import io.contextmap.annotations.rest.ContextRestApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +17,6 @@ import static com.webshop.shoppingcart.configuration.WebSecurityConfig.SHOPPING_
 import static com.webshop.shoppingcart.configuration.WebSecurityConfig.SHOPPING_CART_WRITE;
 
 
-@ContextRestApi(
-        name = "ShoppingCartController",
-        description = "Manage your shopping cart using these endpoints.")
 @Slf4j
 @RestController
 @RequestMapping("/shopping-carts")

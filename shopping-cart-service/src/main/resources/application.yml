@@ -37,13 +37,3 @@ logging:
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 300
-
-contextmap:
-  enabled: true
-  key: @contextmap.key@
-  host: @contextmap.host@
-  scan:
-    system-name: Webshop
-    overview-decision-record: overview.md
-
-

@@ -1,6 +1,5 @@
 package com.webshop.shoppingcart.configuration;
 
-import io.contextmap.annotations.ContextExemplar;
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -9,10 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@ContextExemplar(
-        title = "Easy RabbitMQ Config",
-        description = "This is an example of a very easy and minimalistic way to configure RabbitMQ",
-        tags = {"RabbitMQ", "messaging"})
 @Configuration
 public class RabbitMQConfig {
 

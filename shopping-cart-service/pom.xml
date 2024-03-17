@@ -30,9 +30,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.1</spring-cloud.version>
-		<contextmap.version>2.7.0-SNAPSHOT</contextmap.version>
-		<contextmap.key>YmJhNWI1YTItNGQ2OS00NWU1LTliNDctMjIwZWI0ODI4MmQ1Olg0aHpxZTMpSCxfMTtRa0w=</contextmap.key>
-		<contextmap.host>http://localhost:8000</contextmap.host>
 	</properties>
 
 	<dependencies>
@@ -78,11 +75,6 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.contextmap</groupId>
-			<artifactId>java-spring-runtime</artifactId>
-			<version>${contextmap.version}</version>
-		</dependency>
 <!--		TODO remove any swagger open api reference -->
 		<dependency>
 			<groupId>io.swagger.core.v3</groupId>
@@ -105,28 +97,15 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 			</plugin>
-
 			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 			</plugin>
-
-			<plugin>
-				<groupId>io.contextmap</groupId>
-				<artifactId>java-spring-compiletime</artifactId>
-				<version>${contextmap.version}</version>
-				<configuration>
-					<host>${contextmap.host}</host>
-					<key>${contextmap.key}</key>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 

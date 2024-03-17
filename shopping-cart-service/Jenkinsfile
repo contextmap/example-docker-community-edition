@@ -17,10 +17,5 @@ pipeline {
                 sh './mvnw verify'
             }
         }
-        stage('Document') {
-            steps {
-                sh './mvnw contextmap:scan'
-            }
-        }
     }
 }

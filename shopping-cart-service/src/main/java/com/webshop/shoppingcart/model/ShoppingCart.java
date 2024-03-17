@@ -1,18 +1,12 @@
 package com.webshop.shoppingcart.model;
 
 import com.webshop.shoppingcart.repository.ShoppingCartRepository;
-import io.contextmap.annotations.ContextGlossary;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.List;
 
-@ContextGlossary("""
-An ecommerce shopping cart is software that lets users select, store, and manage items before buying them.
-It reflects the concept of shopping in a store.
-You can add items to the cart that you want to buy, change the quantity, and get a total cost before finishing the transaction.
-""")
 @Entity
 @Getter
 @EqualsAndHashCode(of = "id")
