@@ -27,6 +27,10 @@ either via your IDE, or via command-line e.g.
 mvn spring-boot:run
 ```
 
+If you want to know more about how the ContextMap configuration was done, 
+then have a look at this repository's git commit history.  
+Also, there is a YouTube TODO
+
 ### How to navigate through the documentation for the first time
 
 TODO
