@@ -2,7 +2,18 @@
 
 ## Introduction
 
-This example project demonstrates how to get started with the ContextMap Community Edition docker image.
+This example project demonstrates how to get started with the ContextMap Community Edition docker image.  
+
+The main techstack in this example consists of:
+- Java
+- Spring Boot
+- Maven
+
+Furthermore, ContextMap will also document the following technologies used in this project:
+- RabbitMQ
+- Postgres
+- Git
+- Spring JPA / Cloud / Web
 
 ## How To's
 
