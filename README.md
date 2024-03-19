@@ -15,6 +15,9 @@ Furthermore, ContextMap will also document the following technologies used in th
 - Git
 - Spring JPA / Cloud / Web
 
+Also some other information will be documented like feature files, architectural decision records, 
+exemplary code, glossary, ...
+
 ## How To's
 
 ### How to generate documentation for the first time
