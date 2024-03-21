@@ -81,4 +81,28 @@ The shopping-cart-service uses postgres (in combination with Flyway and Spring J
 The storage and the tables and relations will be documented in ContextMap.
 
 ### Jenkins
-TODO 
+This docker image is optional. You can enable this container if you want to experience how
+documentation would typically occur in your CI/CD pipelines.
+
+#### The Jenkins container
+Priviliged mode is needed to allow Jenkins access to the local filesystem.
+
+The extra_hosts should be configured with you own IP-address. 
+This is needed because when scanning the code form Jenkins, the result is sent to ContextMap running on localhost. 
+And since this is not inside the Jenkins container, we are telling Jenkins how to connect to localhost.
+
+Volumes is configured to map the folder where the example repository was checked out to a read only folder, allowing Jenkins
+to scan the files for changes.
+
+An environment variable is set to allow Jenkins to checkout a local git repository
+
+#### The Jenkins config
+- The first time you run, use the admin password in docker output console, to do initial installation of Jenkins.  
+
+- You can choose "Select plugins to install", then deselect all plugins except for Git.  
+
+- Either: skip the creation of a specific user-account and continue as admin, but then remember the large initial password
+or create a user account which is easy to remember like jenkins/jenkins1&!
+
+- Setup a freestyle job which points to a git repo at: file:///my-project and uses the Jenkinsfile
+
