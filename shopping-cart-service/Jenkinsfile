@@ -19,9 +19,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                // Not really deploying, but instead running the service inside the Jenkins-container
                 echo 'Deploying...'
-                // dummy step in which deployment of new version would occur
-                echo 'Deployed to test environment'
+                echo 'Killing the following processes'
+                sh "ps -ef | grep spring-boot | grep -v grep |  awk '{print $2}'"
+                sh "ps -ef | grep spring-boot | grep -v grep |  awk '{print $2}' | xargs -r kill"
+                echo 'Starting the service'
+                sh 'mvn spring-boot:run &'
+                echo 'Deployed'
             }
         }
     }
