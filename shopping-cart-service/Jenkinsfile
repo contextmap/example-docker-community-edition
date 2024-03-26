@@ -19,7 +19,6 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                // Not really deploying, but instead running the service inside the Jenkins-container
                 echo 'Deploying...'
                 echo 'Killing the following processes'
                 sh "ps -ef | grep spring-boot | grep -v grep |  awk '{print $2}'"

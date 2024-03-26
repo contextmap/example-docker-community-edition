@@ -30,7 +30,7 @@ docker compose up
 Next, you can manually run the command to trigger compile-time scanning of the shopping-cart-service, via:
 ```shell
 cd shopping-cart-service
-mvn clean compile contextmap:scan
+./mvnw clean compile contextmap:scan
 ```
 (Alternatively, you can also enable a Jenkins container to scan the project whenever changes are made, 
 to simulate how a real project would be configured. More details on this below.)
@@ -38,7 +38,7 @@ to simulate how a real project would be configured. More details on this below.)
 Finally, you can start the application locally, which will trigger runtime scanning, 
 either via your IDE, or via command-line e.g.
 ```shell
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
 If you want to know more about how the ContextMap configuration was done, 
@@ -61,7 +61,6 @@ When the docker containers have started and the shopping-cart-service is running
 - **ContextMap** will run on http://localhost:8080
 - **Swagger** will run on http://localhost:8084/swagger-ui/index.html (use admin/admin when asked for username/password)
 - **RabbitMQ** admin dashboard will run on http://localhost:15672 (use guest/guest when asked for username/password)
-- **Jenkins** will run on http://localhost:8081 (but only if you have enabled this)
 
 ## About the docker images
 
@@ -79,39 +78,3 @@ You can navigate to the RabbitMQ admin dashboard to inspect whether messages are
 ### Postgres
 The shopping-cart-service uses postgres (in combination with Flyway and Spring JPA) to store the shopping cart and its items.
 The storage and the tables and relations will be documented in ContextMap.
-
-### Jenkins
-The Jenkins docker image is optional. You can enable this container if you want to experience how
-documentation would typically occur in your CI/CD pipelines. The end result (the documentation) will be the same, whether 
-you run the documentation via local maven commands or whether you use the more elaborate Jenkins workflow.
-
-#### The Jenkins container
-`Priviliged` mode is needed to allow Jenkins access to the local filesystem.
-
-The `extra_hosts` should be configured with you own IP-address. 
-This is needed because when scanning the code form Jenkins, the result is sent to ContextMap running on localhost. 
-And since this is not inside the Jenkins container, we are telling Jenkins how to connect to localhost.
-> Action: configure the extra_hosts
-
-Volumes is configured to map the folder where the example repository was checked out to a read only folder, allowing Jenkins
-to scan the files for changes.
-> Action: configure the folder in volumes 
-
-An environment variable is set to allow Jenkins to checkout a local git repository
-
-#### The Jenkins config
-The first time you run Jenkins navigate to the website (see useful links) and:
-
-- use the admin password in docker output console, to do initial installation of Jenkins.
-
-- You can choose "Select plugins to install", then deselect all plugins except for Git. 
-Since we will only need the Git plugin to checkout the local project.
-
-TODO verify this step
-- Either skip the creation of a specific user-account and continue as admin
-(but then remember the large initial installation password) 
-or create a user account which is easy to remember like jenkins/jenkins1&!
-or 
-
-- Setup a freestyle job which points to a git repo at: file:///my-project and uses the Jenkinsfile
-
